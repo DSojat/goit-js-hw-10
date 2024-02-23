@@ -5,8 +5,6 @@
   |============================
 */
 @import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -23,3 +21,38 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+/* ============== 1-timer ============== */
+section a {
+  display: block;
+}
+section input {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+section button {
+  width: 60px;
+  height: 24px;
+  font-size: 16px;
+}
+
+.timer {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value {
+  font-size: 32px;
+  font-weight: 500;
+}
+/* ============== /1-timer ============== */
+
+/* ============== 2-snackbar ============== */
