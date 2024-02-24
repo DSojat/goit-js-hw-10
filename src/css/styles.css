@@ -26,13 +26,13 @@
 section a {
   display: block;
 }
-section input {
+section > input {
   margin-top: 20px;
   font-size: 16px;
 }
 
 section button {
-  width: 60px;
+  width: auto;
   height: 24px;
   font-size: 16px;
 }
@@ -56,3 +56,24 @@ section button {
 /* ============== /1-timer ============== */
 
 /* ============== 2-snackbar ============== */
+.form {
+  margin-top: 8px;
+}
+
+.form > label > input {
+  display: block;
+  width: 246px;
+  height: 32px;
+  font-size: 16px;
+  padding-left: 8px;
+}
+
+.form > fieldset {
+  width: 230px;
+}
+
+.form > button {
+  width: 260px;
+  margin-top: 8px;
+}
+/* ============== /2-snackbar ============== */
