@@ -14,27 +14,27 @@ iziToast.settings({
 });
 promiseForm.addEventListener('submit', event => {
   event.preventDefault();
-  const delay = promiseForm.elements.delay.value;
+  const delay = Number(promiseForm.elements.delay.value);
   const state = promiseForm.elements.state.value;
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {
-        resolve(`✅ Fulfilled promise in ${delay}ms`);
+        resolve(delay);
       } else {
-        reject(`❌ Rejected promise in ${delay}ms`);
+        reject(delay);
       }
     }, delay);
   });
   promise
     .then(value =>
       iziToast.show({
-        message: value,
+        message: `✅ Fulfilled promise in ${value}ms`,
         backgroundColor: '#329932',
       })
     )
     .catch(error =>
       iziToast.show({
-        message: error,
+        message: `❌ Rejected promise in ${error}ms`,
         backgroundColor: '#ff7373',
       })
     );

@@ -10,7 +10,10 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const dateInput = document.querySelector('#datetime-picker');
 const startButton = document.querySelector('button[data-start]');
-const timer = document.querySelector('.timer');
+const dataDays = document.querySelector('.value[data-days]');
+const dataHours = document.querySelector('.value[data-hours]');
+const dataMinutes = document.querySelector('.value[data-minutes]');
+const dataSeconds = document.querySelector('.value[data-seconds]');
 startButton.disabled = true;
 let userSelectedDate;
 let countdownTime;
@@ -46,6 +49,7 @@ flatpickr(dateInput, options);
 startButton.addEventListener('click', startCountdown);
 
 function startCountdown() {
+  dateInput.setAttribute('disabled', 'true');
   countdownTime = userSelectedDate - Date.now();
   startButton.disabled = true;
   const intervalId = setInterval(() => {
@@ -53,26 +57,13 @@ function startCountdown() {
     if (countdownTime < 1000) {
       clearInterval(intervalId);
       countdownTime = 0;
+      dateInput.removeAttribute('disabled');
     }
     const objTime = convertMs(countdownTime);
-    addLeadingZero(objTime);
-
-    timer.innerHTML = `<div class="field">
-          <span class="value" data-days>${objTime.days}</span>
-          <span class="label">Days</span>
-        </div>
-        <div class="field">
-          <span class="value" data-hours>${objTime.hours}</span>
-          <span class="label">Hours</span>
-        </div>
-        <div class="field">
-          <span class="value" data-minutes>${objTime.minutes}</span>
-          <span class="label">Minutes</span>
-        </div>
-        <div class="field">
-          <span class="value" data-seconds>${objTime.seconds}</span>
-          <span class="label">Seconds</span>
-        </div>`;
+    dataDays.textContent = addLeadingZero(objTime.days);
+    dataHours.textContent = addLeadingZero(objTime.hours);
+    dataMinutes.textContent = addLeadingZero(objTime.minutes);
+    dataSeconds.textContent = addLeadingZero(objTime.seconds);
   }, 1000);
 }
 
@@ -96,7 +87,5 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  for (const key in value) {
-    value[key] = value[key].toString().padStart(2, '0');
-  }
+  return value.toString().padStart(2, '0');
 }
